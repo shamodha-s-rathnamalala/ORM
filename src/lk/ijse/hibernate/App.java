@@ -20,14 +20,14 @@ public class App {
         telNums.add(new CustomerMobiles("074657676","lear"));
 
 
-//        //save
+        //save
         customer.setName(new CustomerName("shamodha","sahan","rathnamalala"));
         customer.setTelNums(telNums);
         customer.setAge(22);
         customer.setCordNo("4574654564");
         System.out.println(customerRepository.saveCustomer(customer));
 
-//        //update
+        //update
         customer.setName(new CustomerName("shamodha","shamodha","shamodha"));
         customer.setId(1);
         customer.setTelNums(telNums);
@@ -43,7 +43,10 @@ public class App {
         }
 
         //find
-        System.out.println(customerRepository.findCustomerById(1).toString());
+        CustomerEntity customerEntity = customerRepository.findCustomerById(1);
+        if (customerEntity != null) {
+            System.out.println(customerEntity.toString());
+        }
 
     }
 }

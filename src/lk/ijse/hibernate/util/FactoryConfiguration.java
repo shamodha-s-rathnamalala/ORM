@@ -9,7 +9,7 @@ public class FactoryConfiguration {
     private static FactoryConfiguration factoryConfiguration;
     private SessionFactory sessionFactory;
     private FactoryConfiguration() {
-        Configuration configuration = new Configuration().configure().addAnnotatedClass(CustomerEntity.class);
+        Configuration configuration = (new Configuration().configure().addAnnotatedClass(CustomerEntity.class));
         sessionFactory = configuration.buildSessionFactory();
     }
 

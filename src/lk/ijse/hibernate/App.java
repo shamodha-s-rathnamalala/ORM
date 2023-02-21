@@ -3,16 +3,13 @@ package lk.ijse.hibernate;
 import lk.ijse.hibernate.embeded.CustomerMobiles;
 import lk.ijse.hibernate.embeded.CustomerName;
 import lk.ijse.hibernate.entity.CustomerEntity;
-import lk.ijse.hibernate.reppsitory.CustomerRepository;
-import lk.ijse.hibernate.util.FactoryConfiguration;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
+import lk.ijse.hibernate.reppsitory.CustomerRepositoryImpl;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class App {
-    private static final CustomerRepository customerRepository = new CustomerRepository();
+    private static final CustomerRepositoryImpl customerRepository = new CustomerRepositoryImpl();
 
     public static void main(String[] args) {
         CustomerEntity customer = new CustomerEntity();
@@ -23,15 +20,30 @@ public class App {
         telNums.add(new CustomerMobiles("074657676","lear"));
 
 
-        //save
+//        //save
         customer.setName(new CustomerName("shamodha","sahan","rathnamalala"));
         customer.setTelNums(telNums);
         customer.setAge(22);
         customer.setCordNo("4574654564");
         System.out.println(customerRepository.saveCustomer(customer));
 
-        //update
+//        //update
+        customer.setName(new CustomerName("shamodha","shamodha","shamodha"));
+        customer.setId(1);
+        customer.setTelNums(telNums);
+        customer.setAge(22);
+        customer.setCordNo("4574654564");
+        System.out.println(customerRepository.updateCustomer(customer));
 
+        //delete
+        try {
+            System.out.println(customerRepository.deleteCustomerById(1));
+        }catch (Exception e){
+            System.out.println("Not fount Customer id !");
+        }
+
+        //find
+        System.out.println(customerRepository.findCustomerById(1).toString());
 
     }
 }
